@@ -1,0 +1,110 @@
+ 
+    <!--================================
+            START DASHBOARD AREA
+    =================================-->
+    <app-header></app-header>
+    <section class="dashboard-area">
+         <div class="dashboard_contents">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-lg-3 col-md-6">
+                         <div class="author-info author-info--dashboard mcolorbg4">
+                             <p>Total Items</p>
+                             <h3>4,369</h3>
+                         </div>
+                     </div>
+                     <!-- end /.col-md-3 -->
+ 
+                     <div class="col-lg-3 col-md-6">
+                         <div class="author-info author-info--dashboard mcolorbg2">
+                             <p>Monthly Sales</p>
+                             <h3>$273.00</h3>
+                         </div>
+                     </div>
+                     <!-- end /.col-md-3 -->
+ 
+                     <div class="col-lg-3 col-md-6">
+                         <div class="author-info author-info--dashboard mcolorbg3">
+                             <p>Yearly Sales</p>
+                             <h3>$2,249.00</h3>
+                         </div>
+                     </div>
+                     <!-- end /.col-md-3 -->
+ 
+                     <div class="col-lg-3 col-md-6">
+                         <div class="author-info author-info--dashboard mcolorbg1">
+                             <p>Lifetime Sales</p>
+                             <h3>$5,583.00</h3>
+                         </div>
+                     </div>
+                     <!-- end /.col-md-3 -->
+                 </div>
+                 <!-- end /.row -->
+ 
+                 <div class="row">
+                     <div class="col-lg-12">
+                         <div class="dashboard_module statistics_module">
+                             <div class="dashboard__title">
+                                 <h4>Sales and Views Statistics</h4>
+ 
+                                 <div class="pull-right">
+                                     <div id="stat_legend" class="legend"></div>
+                                     <div class="select-wrap">
+                                         <select name="mon" class="period_selector">
+                                             <option value="jan">Jan</option>
+                                             <option value="feb">Feb</option>
+                                             <option value="mar">Mar</option>
+                                         </select>
+                                         <span class="lnr lnr-chevron-down"></span>
+                                     </div>
+                                 </div>
+                             </div>
+ 
+                             <div class="dashboard__content">
+                                 <canvas id="myChart"></canvas>
+ 
+                                 <div class="statistics_data">
+                                     <div class="row">
+                                         <div class="col-md-4 col-sm-4">
+                                             <div class="single_stat_data">
+                                                 <h4 class="single_stat__title">478</h4>
+                                                 <p>Total
+                                                     <span>Sales</span> This Month</p>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-4 text-center col-sm-4">
+                                             <div class="single_stat_data">
+                                                 <h4 class="single_stat__title">$2,478</h4>
+                                                 <p>Total
+                                                     <span>Earnings</span> This Month</p>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-4 text-right col-sm-4">
+                                             <div class="single_stat_data">
+                                                 <h4 class="single_stat__title">1,878</h4>
+                                                 <p>Total
+                                                     <span>Views</span> This Month</p>
+                                             </div>
+                                         </div>
+                                     </div>
+ 
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!-- end /.col-md-12 -->
+ 
+         
+             
+                
+              
+                 </div>
+                 <!-- end /.row -->
+             </div>
+             <!-- end /.container -->
+         </div>
+         <!-- end /.dashboard_menu_area -->
+     </section>
+     <!--================================
+             END DASHBOARD AREA
+     =================================-->

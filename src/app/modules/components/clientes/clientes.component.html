@@ -1,0 +1,301 @@
+<app-header></app-header>
+<!--================================
+            START DASHBOARD AREA
+    =================================-->
+<section class="dashboard-area" style="background: white;">
+
+	<div class="dashboard_contents dashboard_statement_area">
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<div class="card ">
+						<br>
+						<div class="row">
+							<div class="col-md-1">
+							</div>
+							<div class="col-md-8">
+								<h2>
+									Lista de Clientes
+								</h2>
+							</div>
+							<div class="col-md-3">
+								<div class="pull-right">
+									<a class="btn btn--md btn--round"
+										(click)="modalCrearUsuario(ModalCreacionUsuario)">Crear
+										Cliente</a>
+								</div>
+							</div>
+
+						</div>
+						<br>
+						<div class="card-body bg-transparent border-success card-footer card-footer">
+							<div class="row">
+								<div class="col-md-12">
+									<br>
+									<table id="tblClientes" class="display" style="width: 100%">
+										<thead>
+											<tr>
+												<th>Cedula</th>
+												<th>Nombre</th>
+												<th>Dirección</th>
+												<th>Correo</th>
+												<th>Telefono</th>
+												<th>Editar</th>
+												<th>Eliminar</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let item of listClientes">
+												<td>{{item.cedula_cliente}}</td>
+												<td>{{item.nombre_cliente}}</td>
+												<td>{{item.direccion_cliente}}</td>
+												<td>{{item.email_clente}}</td>
+												<td>{{item.telefono_cliente}}</td>
+												<td><button class='btn btn--icon btn-sm btn--round btn-info'
+														data-target='#myModalUpdate' data-toggle='modal'
+														(click)="editarCliente(item.cedula_cliente,content)">
+														<i class='fas fa-edit'></i></button></td>
+
+												<td><button class='btn btn--icon btn-sm btn--round btn-danger'
+														(click)="eliminarCliente(item.cedula_cliente)">
+														<i class='far fa-trash-alt btn btn-danger'></i> </button></td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>Cedula</th>
+												<th>Nombre</th>
+												<th>Dirección</th>
+												<th>Correo</th>
+												<th>Telefono</th>
+												<th>Editar</th>
+												<th>Eliminar</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<section>
+				<br> <br> <br>
+			</section>
+			<!-- end /.row -->
+			<!-- end /.row -->
+		</div>
+		<!-- end /.container -->
+	</div>
+
+	<!-- end /.dashboard_menu_area -->
+</section>
+<!--================================
+            END DASHBOARD AREA
+    =================================-->
+
+
+<!-- Modals -->
+<ng-template #ModalCreacionUsuario let-modal>
+
+	<!--div class="modal fade rating_modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="rating_modal">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+		<div class="modal-content"-->
+
+
+	<div class="modal-header">
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h3 class="modal-title" id="rating_modal">Creación de Cliente</h3>
+	</div>
+	<!-- end /.modal-header -->
+	<!--================================
+           			 START DASHBOARD AREA
+   					 =================================-->
+
+	<div class="container">
+		<form [formGroup]="registroClienteForm" (ngSubmit)="agregarCliente()" class="setting_form was-validated">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="information_module">
+						<div class="information__set">
+							<div class="information_wrapper form--fields">
+								<div *ngIf="submitted && registroClienteForm.invalid" class="alert alert-danger"
+									style="text-align: center;" role="alert">
+									Todos los campos son obligatorios
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="first_name">Cedula <sup>*</sup>
+											</label> <input type="number" formControlName="cedula"
+												id="txt_cedula_cliente" class="text_field" placeholder="Ingrese cedula"
+												required="required">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="last_name">Nombre Completo <sup>*</sup>
+											</label> <input type="text" formControlName="nombre"
+												id="txt_nombre_completo" class="text_field" p
+												placeholder="Ingrese nombres" required="required">
+										</div>
+									</div>
+								</div>
+								<!-- end /.row -->
+
+								<div class="form-group">
+									<label for="email1">Coreo Electrónico <sup>*</sup>
+									</label> <input type="text" formControlName="email" id="txt_correo_electronico"
+										class="text_field" placeholder="Ingrese correo electrónico" required="required">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Dirección <sup>*</sup>
+									</label> <input type="text" formControlName="direccion" id="txt_direccion_cliente"
+										class="text_field" placeholder="Íngrese direccion" required="required">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Telefono <sup>*</sup>
+									</label> <input type="text" formControlName="telefono" id="txt_telefono_cliente"
+										class="text_field" placeholder="Íngrese telefono" required="required">
+								</div>
+
+							</div>
+							<!-- end /.row -->
+							<div class="row">
+								<div class="col-md-6 offset-lg-8">
+									<button type="submit" id="BtnRegistrar"
+										class="btn btn--round btn--default">Registrar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end /.information_module -->
+				</div>
+			</div>
+		</form>
+		<!-- end /form -->
+	</div>
+	<!-- end /.container -->
+
+	<!--================================
+            END DASHBOARD AREA
+    		=================================-->
+
+	<!-- end /.modal-body >
+		</div>
+	</div>
+</div-->
+</ng-template>
+
+<!-- end /.modal -->
+
+
+
+<!-- Modals -->
+<ng-template #content let-modal>
+
+	<!--div class="modal fade rating_modal" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="rating_modal">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+		<div class="modal-content"-->
+	<div class="modal-header">
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h3 class="modal-title" id="rating_modal">Actualización de
+			Usuario</h3>
+	</div>
+	<!-- end /.modal-header -->
+	<!--================================
+           			 START DASHBOARD AREA
+   					 =================================-->
+
+	<div class="container">
+		<form [formGroup]="actualizarClienteForm" class="setting_form" (ngSubmit)="actualizarCliente()"
+			class="setting_form was-validated">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="information_module">
+						<div class="information__set">
+							<div class="information_wrapper form--fields">
+								<div *ngIf="submitted && actualizarClienteForm.invalid" class="alert alert-danger"
+									style="text-align: center;" role="alert">
+									Todos los campos son obligatorios
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="first_name">Cedula <sup>*</sup>
+											</label> <input type="number" formControlName="cedula"
+												id="txt_cedula_clienteUpdate" class="text_field"
+												placeholder="Ingrese cedula" required="required">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="last_name">Nombre Completo <sup>*</sup>
+											</label> <input type="text" formControlName="nombre"
+												id="txt_nombre_completoUpdate" class="text_field"
+												placeholder="Ingrese nombres" required="required">
+										</div>
+									</div>
+								</div>
+								<!-- end /.row -->
+
+								<div class="form-group">
+									<label for="email1">Coreo Electrónico <sup>*</sup>
+									</label> <input type="text" formControlName="email"
+										id="txt_correo_electronicoUpdate" class="text_field"
+										placeholder="Ingrese correo electrónico" required="required">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Dirección <sup>*</sup>
+									</label> <input type="text" formControlName="direccion"
+										id="txt_direccion_clienteUpdate" class="text_field"
+										placeholder="Íngrese direccion" required="required">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Telefono <sup>*</sup>
+									</label> <input type="text" formControlName="telefono"
+										id="txt_telefono_clienteUpdate" class="text_field"
+										placeholder="Íngrese telefono" required="required">
+								</div>
+
+							</div>
+							<!-- end /.row -->
+							<div class="row">
+								<div class="col-md-6 offset-lg-8">
+									<button type="submit" id="BtnActualizar"
+										class="btn btn--round btn--default">Actualizar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end /.information_module -->
+				</div>
+			</div>
+		</form>
+		<!-- end /form -->
+	</div>
+	<!-- end /.container -->
+
+	<!--================================
+            END DASHBOARD AREA
+    		=================================-->
+
+	<!-- end /.modal-body >
+		</div>
+	</div>
+</div-->
+</ng-template>

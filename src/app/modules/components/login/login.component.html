@@ -1,0 +1,65 @@
+<body class="preload login-page">
+    <!--================================
+            START LOGIN AREA
+    =================================-->
+    <section class="login_area section--padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="cardify login">
+                            <div class="login--header">
+                                <h3>Bienvenidos a la Tienda Genérica</h3>
+
+                            </div>
+                            <!-- end .login_header -->
+                            <div *ngIf="submitted && loginForm.invalid" class="alert alert-danger"
+                                style="text-align: center;" role="alert">
+                                {{mensajeError}}
+                            </div>
+                            <div *ngIf="errror && !loginForm.invalid" class="alert alert-danger"
+                            style="text-align: center;" role="alert">
+                            {{mensajeError}}
+                        </div>
+                            <div class="login--form">
+                                <div class="form-group">
+                                    <label for="user_name">Usuarios</label>
+                                    <input id="txt_usuario" name="txt_usuario" formControlName="nombreUsuario"
+                                        type="text" class="text_field" placeholder="Ingrese su nombre de usuario...">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pass">Contraseña</label>
+                                    <input id="txt_password" id="txt_password" type="text" formControlName="password"
+                                        class="text_field" placeholder="Ingrese su contraseña...">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom_checkbox">
+                                        <label for="ch2">
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn--md btn--round" id="BtnLogin" type="submit">Iniciar
+                                    Sesión</button>
+
+                            </div>
+                            <!-- end .login--form -->
+                        </div>
+                        <!-- end .cardify -->
+                    </form>
+                </div>
+                <!-- end .col-md-6 -->
+            </div>
+            <!-- end .row -->
+        </div>
+        <!-- end .container -->
+    </section>
+    <!--================================
+            END LOGIN AREA
+    =================================-->
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+        <p style="color: white"> Cargando... </p>
+    </ngx-spinner>
+</body>

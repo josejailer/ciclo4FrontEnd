@@ -1,0 +1,261 @@
+<app-header></app-header>
+<!--================================
+            START DASHBOARD AREA
+    =================================-->
+<section class="dashboard-area" style="background: white;">
+
+	<div class="dashboard_contents dashboard_statement_area">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card ">
+						<br>
+						<div class="row">
+							<div class="col-md-1">
+							</div>
+							<div class="col-md-8">
+								<h2>
+									Lista de Usuarios
+								</h2>
+							</div>
+							<div class="col-md-3">
+								<div class="pull-right">
+									<a href="#" class="btn btn--md btn--round" (click)="modalCrearUsuario(ModalCreacionUsuario)" data-target="#myModal1"
+										data-toggle="modal">Crear
+										Usuario </a>
+								</div>
+							</div>
+
+						</div>
+						<br>
+
+						<div class="card-body bg-transparent border-success card-footer card-footer">
+							<div class="row">
+								<div class="col-md-12">
+									<br>
+									<table id="tblUsuarios" class="display" style="width:100%">
+										<thead>
+											<tr>
+												<th>Cedula</th>
+												<th>Nombre</th>
+												<th>Correo</th>
+												<th>Usuario</th>
+												<th>Editar</th>
+												<th>Eliminar</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let item of listUsuarios">
+												<td>{{item.cedula_usuario}}</td>
+												<td>{{item.nombre_usuario}}</td>
+												<td>{{item.email_usuario}}</td>
+												<td>{{item.usuario}}</td>
+												<td><button class='btn btn--icon btn-sm btn--round btn-info'
+														data-target='#myModalUpdate' data-toggle='modal'
+														(click)="editarUsuario(item.cedula_usuario,content)">
+														<i class='fas fa-edit'></i></button></td>
+
+												<td><button class='btn btn--icon btn-sm btn--round btn-danger'
+														(click)="eliminarUsuario(item.cedula_usuario)">
+														<i class='far fa-trash-alt btn btn-danger'></i> </button></td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>Cedula</th>
+												<th>Nombre</th>
+												<th>Correo</th>
+												<th>Usuario</th>
+												<th>Editar</th>
+												<th>Eliminar</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						<br>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<section>
+				<br> <br> <br> 
+			</section>
+		</div>
+		<!-- end /.container -->
+	</div>
+
+	<!-- end /.dashboard_menu_area -->
+</section>
+<!--================================
+            END DASHBOARD AREA
+    =================================-->
+
+
+<!-- Modals -->
+<ng-template #ModalCreacionUsuario let-modal>
+ 
+			<div class="modal-header">
+				<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="modal-title" id="rating_modal">Creación de Usuario</h3>
+			</div>
+		 
+			<div class="container">
+				<form [formGroup]="registroUsuarioForm" (ngSubmit)="agregarUsuario()"
+					class="setting_form was-validated">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="information_module">
+								<div class="information__set">
+
+									<div class="information_wrapper form--fields">
+										<div *ngIf="submitted && registroUsuarioForm.invalid" class="alert alert-danger"
+											style="text-align: center;" role="alert">
+											Todos los campos son obligatorios
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="first_name">Cedula <sup>*</sup>
+													</label> <input type="number" formControlName="cedula"
+														id="txt_cedula" class="text_field" placeholder="Ingrese cedula"
+														required="required">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="last_name">Nombre Completo <sup>*</sup>
+													</label> <input type="text" formControlName="nombre"
+														id="txt_nombre_completo" class="text_field" p
+														placeholder="Ingrese nombres" required="required">
+												</div>
+											</div>
+										</div>
+										<!-- end /.row -->
+
+										<div class="form-group">
+											<label for="email1">Coreo Electrónico <sup>*</sup>
+											</label> <input type="text" formControlName="email"
+												id="txt_correo_electronico" class="text_field"
+												placeholder="Ingrese correo electrónico" required="required">
+										</div>
+
+										<div class="form-group">
+											<label for="email">Usuario <sup>*</sup>
+											</label> <input type="text" formControlName="usuario" id="txt_usuario"
+												class="text_field" placeholder="Íngrese usuarios" required="required">
+										</div>
+
+										<div class="form-group">
+											<label for="email">Contraseña <sup>*</sup>
+											</label> <input id="txt_password" formControlName="password"
+												id="txt_password" type="text" class="text_field"
+												placeholder="Ingrese password" required="required">
+										</div>
+									</div>
+									<!-- end /.row -->
+									<div class="row">
+										<div class="col-md-6 offset-lg-8">
+											<button type="submit" id="BtnRegistrar"
+												class="btn btn--round btn--default">Registrar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end /.information_module -->
+						</div>
+					</div>
+				</form>
+				<!-- end /form -->
+			</div>
+	 
+</ng-template>
+
+<!-- end /.modal -->
+
+
+
+<!-- Modals -->
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h3 class="modal-title" id="rating_modal">Actualización de Usuario</h3>
+	</div>
+	<!-- end /.modal-header -->
+	<!--================================
+           			 START DASHBOARD AREA
+   					 =================================-->
+
+	<div class="container">
+		<form [formGroup]="actualizarUsuarioForm" class="setting_form" (ngSubmit)="actualizarUsuario()">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="information_module">
+						<div class="information__set">
+							<div class="information_wrapper form--fields">
+								<div *ngIf="submitted && actualizarUsuarioForm.invalid" class="alert alert-danger"
+									style="text-align: center;" role="alert">
+									Todos los campos son obligatorios
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="first_name">Cedula <sup>*</sup>
+											</label> <input type="number" formControlName="cedula" id="txt_cedulaUpdate"
+												class="text_field" placeholder="Ingrese cedula" required="required">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="last_name">Nombre Completo <sup>*</sup>
+											</label> <input type="text" formControlName="nombre"
+												id="txt_nombre_completoUpdate" class="text_field" p
+												placeholder="Ingrese nombres" required="required">
+										</div>
+									</div>
+								</div>
+								<!-- end /.row -->
+
+								<div class="form-group">
+									<label for="email1">Coreo Electrónico <sup>*</sup>
+									</label> <input type="text" formControlName="email"
+										id="txt_correo_electronicoUpdate" class="text_field"
+										placeholder="Ingrese correo electrónico" required="required">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Usuario <sup>*</sup>
+									</label> <input type="text" formControlName="usuario" id="txt_usuarioUpdate"
+										class="text_field" placeholder="Íngrese usuarios" required="required">
+								</div>
+
+								<div class="form-group">
+									<label for="email">Contraseña <sup>*</sup>
+									</label> <input id="txt_passwordUpdate" formControlName="password" type="text"
+										class="text_field" placeholder="Ingrese password" required="required">
+								</div>
+
+							</div>
+							<!-- end /.row -->
+							<div class="row">
+								<div class="col-md-6 offset-lg-8">
+									<button type="submit" id="BtnActualizar"
+										class="btn btn--round btn--default">Actualizar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end /.information_module -->
+				</div>
+			</div>
+		</form>
+		<!-- end /form -->
+	</div>
+ 
+</ng-template>
